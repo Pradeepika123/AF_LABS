@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // console.log("Hello World");
+        //
+        // var myAge=22
+        // console.log("I'm Pradeepika. My age is "+myAge);
+
+        // var hi=function () {
+        //     console.log("Pradeepika");
+        // }
+        // console.log("Hi "+hi());
+
+        //Question 1
+        var firstFunc = function () {
+            console.log("Hello World");
+        }
+        firstFunc();
+
+        function secondFunc(abc) {
+            abc
+        }
+        secondFunc(firstFunc());
+
+        //Question 2
+        var person = {
+            name: "Pradeepika",
+            age: 22,
+            city: "Ja Ela",
+
+            display: function () {
+                console.log("Name   : "+this.name+"\nAge    : "+this.age+"\nCity    : "+this.city);
+            }
+        }
+        person.display();
+
+        //Question 3 without 'this' key word
+        var vehicleName="Audi"
+        function printVehicleName() {
+            console.log(vehicleName);
+        }
+        printVehicleName();
+        var Vehicle = {
+            vehicleName: "Audi",
+            getVehicleName: function () {
+                printVehicleName();
+            }
+        }
+        Vehicle.getVehicleName();
+
+        //Question 4
+        function calcTax() {
+            var taxPecentage = 230;
+            function tax() {
+                var amount = 500;
+                var total = amount+taxPecentage;
+                console.log(total);
+                return total
+            }
+            return tax()
+        }
+        calcTax()
+
+        //another method
+        function calc(tax) {
+            function taxAmount(amount) {
+                return amount+tax;
+            }
+            return taxAmount();
+        }
+        var am = calc(100);
+        //console.log(am(2000));
+
+        //Question 5
+        // function githubAPI(callback) {
+        //     $.getJSON("https://api.github.com/users",callback);
+        // }
+        // function userEx(data) {
+        //     data.forEach(element={
+        //        if(element.id == 1){
+        //            console.log(element.url)
+        //     }
+        //     });
+        // }
+        // githubAPI(userEx());
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
