@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+    <script>
+        function Vehicle(type) {
+            Vehicle.INSTANCE_COUNT++;
+            this.type = type;
+
+            // this.getType=function () {
+            //     return this.type;
+            // }
+        }
+        Vehicle.INSTANCE_COUNT = 0;
+
+        Vehicle.prototype.getType = function () {
+            return this.type;
+        }
+        // function Car() {
+        //     Vehicle.call(this);
+        // }
+        function Car(type) {
+            Vehicle.call(this,type);
+        }
+        Car.prototype = Object.create(Vehicle.prototype);   //making a copy of prototype
+        Car.prototype.constructor = Car;
+
+        var car = new Car('Audi');
+        var car1 = new Car('Toyota');
+
+        console.log(car.getType());
+        //console.log(car);
+        console.log(Vehicle.INSTANCE_COUNT);
+        // var vehicle = new Vehicle();
+        // console.log(vehicle.getType());
+
+
+        //'this' keyword usage
+        // var name = 'David';
+        // function printName() {
+        //     console.log(this.name);
+        // }
+        // printName();
+        // var user = {
+        //     name: 'Peter',
+        //     getName: function () {
+        //         return function () {
+        //             console.log(this.name);
+        //         }
+        //     }
+        // }
+        // console.log(this);
+        // var execute = user.getName();
+        // // execute();
+        // // execute.call(user);
+        //
+        // var boundedExecution = execute.bind(user);
+        // boundedExecution();
+    </script>
+</body>
+</html>
