@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Js Lecture Part 2</title>
+</head>
+<body>
+    <script>
+        //Closure example
+        function taxCalculator(percentage) {
+            var percentageValue = percentage;
+            return function (amount) {
+                return amount*percentageValue/100;
+            }
+        }
+        var calculator = taxCalculator(30);
+        console.log(calculator(1000));
+
+        //Callback example
+        setTimeout(function () {
+            console.log('Hello World !');
+        }, 1000);
+
+        setTimeout(function () {
+            const value = 1000;
+            console.log(value);
+        }, 1000);
+
+        function main(callback) {
+            setTimeout(function () {
+                const value = 1000;
+                callback(value);
+            },1000);
+        }
+        main(function (amount) {
+            console.log((amount*20/100));
+        })
+        const calculatorFunction = function (amount) {
+            console.log(amount*20/100);
+        }
+        main(calculatorFunction);
+
+        //Callback Hell example
+        const calculatorFunction1 = function (amount) {
+            let total=amount;
+            main(function (amount1) {
+                total+=amount1;
+                main(function (amount2){
+                    total+=amount2;
+                    console.log(total);
+                })
+            })
+        };
+        main(calculatorFunction1);
+        console.log('Here');
+
+        //Promises example
+        function main() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    const value=1000;
+                    resolve(value);
+                }, 1000);
+            });
+        }
+        const promise = main();
+        promise.then(function (amount) {
+            console.log(amount*20/100);
+        })
+
+        function executor() {
+            const promise = main();
+            let total = 0;
+            promise.then(function (amount) {
+                total+=amount;
+                return main();
+            }).then(function (amount) {
+                total+=amount;
+                return main();
+            }).then(function (amount) {
+                total+=amount;
+               //console.log(total);
+                return total;
+            }).then(function (value) {
+                console.log(value);
+            });
+        }
+        executor();
+    </script>
+</body>
+</html>
